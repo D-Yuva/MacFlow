@@ -1,0 +1,120 @@
+[package]
+name = "macflow"
+version = "1.4.0"
+edition = "2024"
+rust-version = "1.88"
+description = "A fast, memory-bounded native macOS window switcher"
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/D-Yuva/MacFlow"
+homepage = "https://github.com/D-Yuva/MacFlow"
+publish = false
+keywords = ["macos", "window-switcher", "productivity", "accessibility"]
+categories = ["gui", "os::macos-apis"]
+
+[dependencies]
+dispatch2 = { version = "0.3.1", default-features = false, features = ["std"] }
+libc = "0.2.175"
+objc2 = { version = "0.6.4", default-features = false, features = ["std"] }
+objc2-app-kit = { version = "0.3.2", default-features = false, features = [
+    "std",
+    "libc",
+    "objc2-core-foundation",
+    "objc2-core-graphics",
+    "NSApplication",
+    "NSAttributedString",
+    "NSBezierPath",
+    "NSButton",
+    "NSColor",
+    "NSControl",
+    "NSEvent",
+    "NSFont",
+    "NSGraphics",
+    "NSGraphicsContext",
+    "NSImage",
+    "NSImageRep",
+    "NSMenu",
+    "NSMenuItem",
+    "NSPasteboard",
+    "NSPanel",
+    "NSResponder",
+    "NSRunningApplication",
+    "NSScreen",
+    "NSStatusBar",
+    "NSStatusBarButton",
+    "NSStatusItem",
+    "NSStringDrawing",
+    "NSView",
+    "NSVisualEffectView",
+    "NSWindow",
+    "NSWorkspace",
+] }
+objc2-application-services = { version = "0.3.2", default-features = false, features = [
+    "std",
+    "libc",
+    "AXError",
+    "HIServices",
+    "AXUIElement",
+    "AXValue",
+] }
+objc2-core-foundation = { version = "0.3.2", default-features = false, features = [
+    "std",
+    "objc2",
+    "CFArray",
+    "CFCGTypes",
+    "CFDictionary",
+    "CFMachPort",
+    "CFNumber",
+    "CFRunLoop",
+    "CFString",
+] }
+objc2-core-graphics = { version = "0.3.2", default-features = false, features = [
+    "std",
+    "objc2",
+    "CGBitmapContext",
+    "CGColorSpace",
+    "CGContext",
+    "CGEvent",
+    "CGEventTypes",
+    "CGGeometry",
+    "CGImage",
+    "CGWindow",
+] }
+objc2-foundation = { version = "0.3.2", default-features = false, features = [
+    "std",
+    "objc2-core-foundation",
+    "NSAttributedString",
+    "NSArray",
+    "NSDictionary",
+    "NSError",
+    "NSEnumerator",
+    "NSGeometry",
+    "NSNotification",
+    "NSObject",
+    "NSPathUtilities",
+    "NSProcessInfo",
+    "NSString",
+    "NSTimer",
+    "NSURL",
+    "NSUserDefaults",
+] }
+block2 = { version = "0.6.2", default-features = false, features = ["alloc"], optional = true }
+objc2-screen-capture-kit = { version = "0.3.2", default-features = false, optional = true, features = ["std", "libc", "SCShareableContent", "SCScreenshotManager", "SCStream", "block2", "objc2-core-graphics"] }
+objc2-service-management = { version = "0.3.2", default-features = false, features = ["std", "objc2", "objc2-foundation", "SMAppService"] }
+
+[features]
+default = ["modern-capture"]
+modern-capture = ["dep:block2", "dep:objc2-screen-capture-kit"]
+# Private SkyLight calls are disabled in App Store builds; public AX/app
+# activation remains available.
+app-store = []
+
+[profile.release]
+codegen-units = 1
+lto = "thin"
+opt-level = 3
+panic = "abort"
+strip = "symbols"
+
+[profile.test]
+opt-level = 2

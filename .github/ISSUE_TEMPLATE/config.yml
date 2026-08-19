@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Private security report
+    url: https://github.com/D-Yuva/MacFlow/security/advisories/new
+    about: Report vulnerabilities privately; never post exploit details in an issue.
+  - name: Documentation
+    url: https://github.com/D-Yuva/MacFlow#readme
+    about: Review installation, permissions, privacy, building, and verification guidance.

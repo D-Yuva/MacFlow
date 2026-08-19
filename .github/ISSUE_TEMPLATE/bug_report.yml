@@ -1,0 +1,100 @@
+name: Bug report
+description: Report a reproducible MacFlow problem
+title: "[Bug]: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping improve MacFlow. Do not include unredacted window
+        titles, screenshots, local paths, credentials, or other private data.
+        Security vulnerabilities belong in a private security advisory.
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before submitting
+      options:
+        - label: I searched existing issues and did not find a duplicate.
+          required: true
+        - label: I reproduced this on the latest MacFlow release or current `main`.
+          required: true
+        - label: This report contains no secrets or unredacted personal data.
+          required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: MacFlow version
+      description: Use the version shown in Copy Diagnostics or the release name.
+      placeholder: 1.4.0 (build 9)
+    validations:
+      required: true
+
+  - type: input
+    id: macos
+    attributes:
+      label: macOS version and Mac architecture
+      placeholder: macOS 15.6, Apple silicon
+    validations:
+      required: true
+
+  - type: dropdown
+    id: permission
+    attributes:
+      label: Permissions enabled
+      multiple: true
+      options:
+        - Accessibility
+        - Screen Recording
+        - Neither
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Window and Space setup
+      description: Describe the apps, number of windows/displays, and fullscreen or minimized state without exposing private content.
+      placeholder: Two Arc windows, one fullscreen Space, two external displays…
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Focus…
+        2. Press…
+        3. Select…
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+
+  - type: textarea
+    id: diagnostics
+    attributes:
+      label: Redacted diagnostics
+      description: Paste Menu Bar > Copy Diagnostics if useful. Review and redact it first.
+      render: text
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional context
+      description: Add a minimal test app or sanitized recording only when it is safe to share.

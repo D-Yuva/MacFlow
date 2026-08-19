@@ -1,0 +1,40 @@
+.DS_Store
+
+# Environment files and local credentials
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.p8
+*.p12
+*.pfx
+*.cer
+*.crt
+*.jks
+*.keystore
+*.mobileprovision
+*.provisionprofile
+
+# IDE and editor-local state
+/.idea/
+/.vscode/
+DerivedData/
+xcuserdata/
+*.xcuserstate
+*.swp
+*.swo
+*~
+
+# Rust and packaged application outputs
+/target/
+/build/
+
+# Machine-local agent and analysis state
+/.claude/
+/.lavish/
+/.understand-anything/
+
+# Local logs and diagnostics
+*.log
+*.trace
